@@ -1,0 +1,76 @@
+<!-- 출발용 슬라이드 뼈대. 클래스는 deck.css(k-*)에 정의되어 있다.
+     규칙: 슬라이드마다 data-title(터미널 레일에 표시), 쪽번호는 k-foot 오른쪽, 아직 모르는 값은 <span class="tbd">○○</span>.
+     이미지는 img/ 폴더 파일 이름으로 {{파일이름}} 자리표시자를 쓴다(예: img/ci.png → {{ci}}). -->
+
+<!-- === 1. COVER === -->
+<section class="slide k-dark" data-title="표지">
+  <div class="k-logo"><img src="{{ci}}" alt="기관 CI"></div>
+  <h1 class="k-cover-t">발표 제목을<br>두 줄로 적는다</h1>
+  <p class="k-cover-s">부제: 무엇을 어떻게 바꿨는지 한 문장</p>
+  <div class="k-cover-m">행사·대회 이름<br><b>공모분야 또는 발표 구분</b><br>기관·부서 &nbsp;|&nbsp; <span class="tbd">○○○○. ○○.</span></div>
+</section>
+
+<!-- === 2. CONTENTS === -->
+<section class="slide" data-title="목차">
+  <img class="k-ci" src="{{ci}}" alt="">
+  <div class="k-wrap">
+    <div class="k-top"><span class="k-sec">CONTENTS</span></div>
+    <h2 class="k-title">목차</h2>
+  </div>
+  <div class="k-body" style="top:250px">
+    <div class="k-toc k-toc3">
+      <div class="k-toc-l">
+        <div class="k-toc-i"><span class="n">Ⅰ</span><span class="t">배경<small>현황과 문제</small></span><span class="p">4</span></div>
+        <div class="k-toc-sub"><b>1</b><span>첫 번째 중제목</span><span class="p">4</span></div>
+      </div>
+      <div class="k-toc-l">
+        <div class="k-toc-i"><span class="n">Ⅱ</span><span class="t">추진결과 및 성과<small>대표 성과</small></span><span class="p">5</span></div>
+        <div class="k-toc-sub"><b>1</b><span>대표 성과 1</span><span class="p">5</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="k-foot"><span>기관명</span><span>2</span></div>
+</section>
+
+<!-- === PART I divider (간지: CI 없음) === -->
+<section class="slide k-part" data-title="간지 Ⅰ. 배경">
+  <div class="k-part-in">
+    <div class="k-part-nb"><div class="k-part-n">Ⅰ</div>
+    <div class="k-part-bar"></div></div>
+    <h2 class="k-part-t">배경</h2>
+    <ol class="k-part-l">
+      <li><b>1</b>첫 번째 중제목</li>
+    </ol>
+  </div>
+  <div class="k-foot"><span>기관명</span><span>3</span></div>
+</section>
+
+<!-- === 4. CONTENT (3단) === -->
+<section class="slide" data-title="Ⅰ-1. 첫 번째 중제목">
+  <img class="k-ci" src="{{ci}}" alt="">
+  <div class="k-wrap">
+    <div class="k-top2"><span class="k-l1">Ⅰ. 배경</span><div class="k-l2row"><span class="k-l2">1. 첫 번째 중제목</span><span class="k-crit">평가항목 <i>세부 기준</i></span></div></div>
+    <h2 class="k-title">핵심 메시지를 개조식 문어체 한 줄로 기술</h2>
+    <p class="k-lead">근거 숫자 한두 개를 담은 보충 설명</p>
+  </div>
+  <div class="k-hr" style="top:284px"></div>
+  <div class="k-body" style="top:300px;bottom:176px">
+    <div class="k-row" style="gap:24px">
+      <div class="k-col" style="flex:1">
+        <div class="k-h">① 첫째 묶음 <small>보충</small></div>
+        <div class="k-card t"><div class="k-k">지표</div><div class="k-big"><span class="tbd">○○</span><small>건</small></div><p>지표 설명</p></div>
+      </div>
+      <div class="k-col" style="flex:1">
+        <div class="k-h">② 둘째 묶음</div>
+        <div class="k-card"><h4><span class="k-tag old">기존</span>기존 방식</h4><p>무엇이 불편했는지</p></div>
+        <div class="k-card"><h4><span class="k-tag now">현재</span>바뀐 방식</h4><p>무엇이 달라졌는지</p></div>
+      </div>
+      <div class="k-col" style="flex:1">
+        <div class="k-h">③ 셋째 묶음</div>
+        <ul class="k-ul"><li>개조식 항목 하나</li><li>개조식 항목 둘</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="k-bar">이 쪽의 결론 한 줄</div>
+  <div class="k-foot"><span class="k-src"><span class="k-tag">자료</span>출처와 기준일</span><span>4</span></div>
+</section>
