@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OO 보안 협의회 회의록 (예시)</title>
+  <style>
+    :root { --bg:#f5f7fb; --surface:#fff; --text:#1e293b; --muted:#64748b; --border:#e2e8f0; --accent:#1d4ed8; --accent-soft:#eff6ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; padding:28px 18px; font-family:"Pretendard","Noto Sans KR",sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+    .container { max-width:860px; margin:0 auto; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:32px 36px; box-shadow:0 8px 24px rgba(15,23,42,.05); }
+    header { border-bottom:2px solid var(--border); padding-bottom:16px; margin-bottom:22px; }
+    .badge { display:inline-block; font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+    h1 { margin:0 0 10px; font-size:24px; }
+    .meta-grid { display:flex; gap:20px; font-size:14px; color:var(--muted); }
+    .meta-item strong { color:var(--text); margin-right:4px; }
+    .session-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; border-bottom:2px solid var(--border); padding-bottom:10px; }
+    .session-tab { border:1px solid var(--border); background:#f8fafc; color:var(--muted); font:600 14px inherit; padding:7px 14px; border-radius:8px; cursor:pointer; }
+    .session-tab.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .session { display:none; border:1px solid var(--border); border-radius:10px; padding:20px 22px; background:#fcfdff; }
+    .session.active { display:block; }
+    .session-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+    .session-num { font-size:12px; font-weight:700; color:#fff; background:var(--accent); padding:3px 9px; border-radius:6px; }
+    .session h2 { margin:0; font-size:18px; }
+    .topic-group { margin-top:14px; padding-top:12px; border-top:1px dashed var(--border); }
+    .topic-group:first-of-type { margin-top:6px; padding-top:0; border-top:none; }
+    .topic-group h3 { margin:0 0 8px; font-size:15px; color:var(--accent); }
+    .compare-table { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px; background:#fff; border:1px solid var(--border); }
+    .compare-table th,.compare-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; }
+    .compare-table thead th { background:#f1f5f9; }
+    .compare-table thead th.modern-col { background:var(--accent-soft); color:var(--accent); }
+    .compare-table tbody th { width:100px; background:#f8fafc; }
+    sup.fn-ref { font-size:11px; margin-left:2px; }
+    sup.fn-ref a { color:var(--accent); text-decoration:none; font-weight:700; padding:1px 4px; border-radius:4px; background:var(--accent-soft); }
+    sup.fn-ref.fn-question a { color:#ea580c; background:#fff7ed; border:1px solid #fed7aa; }
+    sup.fn-ref.fn-opinion a { color:#059669; background:#ecfdf5; border:1px solid #a7f3d0; }
+    .footnotes { display:none; }
+    .fn-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(15,23,42,.45); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+    .fn-modal-backdrop.open { display:flex; }
+    .fn-modal { width:100%; max-width:520px; background:#fff; border-radius:12px; padding:20px 22px; box-shadow:0 20px 48px rgba(15,23,42,.18); }
+    .fn-modal-header { display:flex; justify-content:space-between; gap:12px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .fn-modal-badge { display:inline-block; font-size:11px; font-weight:700; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:999px; margin-bottom:4px; }
+    .fn-modal-badge.is-question { color:#ea580c; background:#fff7ed; }
+    .fn-modal-badge.is-opinion { color:#059669; background:#ecfdf5; }
+    .fn-modal-title { margin:0; font-size:15px; }
+    .fn-modal-close { border:none; background:#f1f5f9; width:26px; height:26px; border-radius:6px; cursor:pointer; }
+    .fn-modal-summary { margin:0 0 10px; font-size:14px; color:#334155; }
+    .fn-modal-links { font-size:13px; border-top:1px dashed var(--border); padding-top:8px; }
+    @media print { .session-tabs { display:none; } .session,.footnotes { display:block !important; } .fn-modal-backdrop { display:none !important; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">회의록</span>
+      <h1>OO 보안 협의회</h1>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>일시</strong> 2026-11-27</div>
+        <div class="meta-item"><strong>장소</strong> 송도 컨벤시아</div>
+      </div>
+    </header>
+    <main>
+      <nav class="session-tabs" id="sessionTabs">
+        <button type="button" class="session-tab active" data-target="session-1">세션 1. 최신 위협 동향</button>
+        <button type="button" class="session-tab" data-target="session-2">세션 2. 보안성 검토</button>
+      </nav>
+      <section class="session active" id="session-1">
+        <div class="session-header"><span class="session-num">세션 1</span><h2>최신 위협 동향</h2></div>
+        <p style="margin:-4px 0 12px; font-size:13.5px; color:var(--muted);"><strong>발표 기관:</strong> 국가사이버안보센터</p>
+        <div class="topic-group">
+          <h3>1. 주요 위협 및 질문·의견</h3>
+          <ul>
+            <li id="ref-1">AI 기반 공격이 전년 대비 <strong>89% 증가</strong><sup class="fn-ref"><a href="#fn-1">[1]</a></sup></li>
+            <li id="ref-q1">로컬 LLM 및 RAG 운용 정황<sup class="fn-ref fn-question"><a href="#fn-q1">[?]</a></sup></li>
+            <li id="ref-op1">원격근무 취약점 악용 사례 증가<sup class="fn-ref fn-opinion"><a href="#fn-op1">[!]</a></sup></li>
+          </ul>
+        </div>
+        <div class="topic-group">
+          <h3>2. 패러다임 비교</h3>
+          <table class="compare-table">
+            <thead><tr><th>구분</th><th>기존</th><th class="modern-col">현대 (2026년 이후)</th></tr></thead>
+            <tbody><tr><th>침투 방식</th><td>방화벽 우회</td><td>자격증명 탈취·정상 로그인</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="session" id="session-2">
+        <div class="session-header"><span class="session-num">세션 2</span><h2>보안성 검토</h2></div>
+        <p style="color:var(--muted); font-style:italic; font-size:14px;">내용 입력 대기 중...</p>
+      </section>
+      <section class="footnotes" id="footnotes">
+        <ol>
+          <li id="fn-1"><div class="fn-title">CrowdStrike 2026 Global Threat Report</div><p class="fn-summary">AI 활용 공격이 전년 대비 89% 증가함.</p><div class="fn-link">출처: <a href="https://www.crowdstrike.com/en-us/global-threat-report/" target="_blank" rel="noopener noreferrer">CrowdStrike</a></div></li>
+          <li id="fn-q1"><div class="fn-title">[질문] GPU 인프라 확보 방식은?</div><p class="fn-summary"><strong>조사 결과:</strong> 우회 밀반입 및 구형 GPU 경량 모델 운용 정황 확인.</p><div class="fn-link">출처: <a href="https://www.dailynk.com/20260122-2/" target="_blank" rel="noopener noreferrer">DailyNK</a></div></li>
+          <li id="fn-op1"><div class="fn-title">[의견] 대면근무 필요성</div><p class="fn-summary">원격근무 신원 위조 위협은 대면근무 필요성의 근거가 될 수 있음.</p><div class="fn-link">구분: 참석자 의견</div></li>
+        </ol>
+      </section>
+    </main>
+  </div>
+  <div class="fn-modal-backdrop" id="fnModalBackdrop"><div class="fn-modal"><div class="fn-modal-header"><div><span class="fn-modal-badge" id="fnModalBadge"></span><h3 class="fn-modal-title" id="fnModalTitle"></h3></div><button class="fn-modal-close" id="fnModalClose" type="button">✕</button></div><p class="fn-modal-summary" id="fnModalSummary"></p><div class="fn-modal-links" id="fnModalLinks"></div></div></div>
+  <script>
+    (function () {
+      const b = document.getElementById('fnModalBackdrop'), bg = document.getElementById('fnModalBadge'), t = document.getElementById('fnModalTitle'), s = document.getElementById('fnModalSummary'), l = document.getElementById('fnModalLinks');
+      document.addEventListener('click', e => {
+        const a = e.target.closest('sup.fn-ref a'); if (!a) return;
+        const fn = document.querySelector(a.getAttribute('href')); if (!fn) return;
+        e.preventDefault();
+        const sup = a.closest('sup.fn-ref');
+        bg.className = 'fn-modal-badge' + (sup.classList.contains('fn-question') ? ' is-question' : sup.classList.contains('fn-opinion') ? ' is-opinion' : '');
+        bg.textContent = sup.classList.contains('fn-question') ? '질문 [?]' : sup.classList.contains('fn-opinion') ? '의견 [!]' : '근거자료 ' + a.textContent.trim();
+        t.textContent = fn.querySelector('.fn-title').textContent.trim();
+        s.textContent = fn.querySelector('.fn-summary').textContent.trim();
+        l.innerHTML = fn.querySelector('.fn-link').innerHTML;
+        b.classList.add('open');
+      });
+      document.getElementById('fnModalClose').onclick = () => b.classList.remove('open');
+      b.onclick = e => { if (e.target === b) b.classList.remove('open'); };
+      document.getElementById('sessionTabs').onclick = e => {
+        const tab = e.target.closest('.session-tab'); if (!tab) return;
+        document.querySelectorAll('.session-tab,.session').forEach(el => el.classList.remove('active'));
+        tab.classList.add('active'); document.getElementById(tab.dataset.target).classList.add('active');
+      };
+    })();
+  </script>
+</body>
+</html>
